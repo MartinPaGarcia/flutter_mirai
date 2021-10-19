@@ -14,6 +14,8 @@ class Question extends StatelessWidget {
     //ignore: avoid_unnecessary_containers, sized_box_for_whitespace
     return Container(
       width: double.infinity,
+      // ignore: prefer_const_constructors
+      margin: EdgeInsets.all(10),
       child: Text(
       questionText,
       // ignore: prefer_const_constructors
