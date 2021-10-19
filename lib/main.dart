@@ -1,6 +1,7 @@
-// ignore_for_file: prefer_const_constructors, must_be_immutable, unused_element
+// ignore_for_file: prefer_const_constructors, must_be_immutable, unused_element, unused_import
 
 import "package:flutter/material.dart";
+import './question.dart';
 
 // void main() {
 // runApp(MyApp());
@@ -22,7 +23,7 @@ class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
 
   void _answerQuestion() {
-    setState((){
+    setState(() {
       _questionIndex = _questionIndex + 1;
     });
     // ignore: avoid_print
@@ -45,7 +46,7 @@ class _MyAppState extends State<MyApp> {
         body: Column(
           // ignore: prefer_const_literals_to_create_immutables
           children: [
-            Text(
+            Question(
               questions[_questionIndex],
             ),
             ElevatedButton(
@@ -66,4 +67,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
