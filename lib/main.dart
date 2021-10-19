@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, must_be_immutable
+// ignore_for_file: prefer_const_constructors, must_be_immutable, unused_element
 
 import "package:flutter/material.dart";
 
@@ -14,18 +14,19 @@ class MyApp extends StatefulWidget {
   State<StatefulWidget> createState() {
     // ignore: todo
     // TODO: implement createState
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
-  var questionIndex = 0;
-  void answerQuestion() {
+class _MyAppState extends State<MyApp> {
+  var _questionIndex = 0;
+
+  void _answerQuestion() {
     setState((){
-      questionIndex = questionIndex + 1;
+      _questionIndex = _questionIndex + 1;
     });
     // ignore: avoid_print
-    print(questionIndex);
+    print(_questionIndex);
   }
 
   @override
@@ -45,19 +46,19 @@ class MyAppState extends State<MyApp> {
           // ignore: prefer_const_literals_to_create_immutables
           children: [
             Text(
-              questions[questionIndex],
+              questions[_questionIndex],
             ),
             ElevatedButton(
               child: Text("Answer1"),
-              onPressed: answerQuestion,
+              onPressed: _answerQuestion,
             ),
             ElevatedButton(
               child: Text("Answer2"),
-              onPressed: answerQuestion,
+              onPressed: _answerQuestion,
             ),
             ElevatedButton(
               child: Text("Answer3"),
-              onPressed: answerQuestion,
+              onPressed: _answerQuestion,
             ),
           ],
         ),
@@ -65,3 +66,4 @@ class MyAppState extends State<MyApp> {
     );
   }
 }
+
