@@ -1,17 +1,20 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, must_be_immutable
 
 import "package:flutter/material.dart";
 
 // void main() {
 // runApp(MyApp());
 // }
-void main() => runApp(const MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+
+  var questionIndex = 0;
   void answerQuestion() {
+    questionIndex = questionIndex + 1;
     // ignore: avoid_print
-    print("Anser chosen!");
+    print(questionIndex);
   }
 
   @override
@@ -20,6 +23,7 @@ class MyApp extends StatelessWidget {
     var questions = [
       "What is your favourite colour?",
       "What is your favourite animal?",
+      "What is your favourite food?",
     ]; // Questions
     return MaterialApp(
       home: Scaffold(
@@ -29,19 +33,21 @@ class MyApp extends StatelessWidget {
         body: Column(
           // ignore: prefer_const_literals_to_create_immutables
           children: [
-            const Text("The question!"),
+            Text(
+              questions[questionIndex],
+            ),
             ElevatedButton(
               child: Text("Answer1"),
               onPressed: answerQuestion,
-              ),
+            ),
             ElevatedButton(
               child: Text("Answer2"),
               onPressed: answerQuestion,
-              ),
+            ),
             ElevatedButton(
               child: Text("Answer3"),
               onPressed: answerQuestion,
-              ),
+            ),
           ],
         ),
       ),
