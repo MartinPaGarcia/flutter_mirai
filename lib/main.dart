@@ -2,6 +2,7 @@
 
 import "package:flutter/material.dart";
 import './question.dart';
+import './answer.dart';
 
 // void main() {
 // runApp(MyApp());
@@ -34,9 +35,15 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
     var questions = [
-      "What is your favourite colour?",
-      "What is your favourite animal?",
-      "What is your favourite food?",
+      {"questionText":"What is your favourite colour?", "answers":[
+        "Black", "Green", "Red", "White"]
+      },
+      {"questionText":"What is your favourite animal?", "answers":[
+        "Rabbit", "Snake", "Elephant", "Lion"]
+      },
+      {"questionText":"What is your favourite food?", "answers":[
+        "Hamburger", "Pizza", "Tacos", "Sushi"]
+      },
     ]; // Questions
     return MaterialApp(
       home: Scaffold(
@@ -47,17 +54,11 @@ class _MyAppState extends State<MyApp> {
           // ignore: prefer_const_literals_to_create_immutables
           children: [
             Question(
-              questions[_questionIndex],
+              questions[_questionIndex]['questionText']?.toString() ?? ' ',
             ),
-            
-            ElevatedButton(
-              child: Text("Answer2"),
-              onPressed: _answerQuestion,
-            ),
-            ElevatedButton(
-              child: Text("Answer3"),
-              onPressed: _answerQuestion,
-            ),
+            Answer(_answerQuestion),
+            Answer(_answerQuestion),
+            Answer(_answerQuestion),
           ],
         ),
       ),
