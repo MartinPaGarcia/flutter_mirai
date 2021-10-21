@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
-    var questions = [
+    final questions = [
       {
         "questionText": "What is your favourite colour?",
         "answers": ["Black", "Green", "Red", "White"]
@@ -59,7 +59,8 @@ class _MyAppState extends State<MyApp> {
             Question(
               questions[_questionIndex]['questionText']?.toString() ?? ' ',
             ),
-            ...(questions[_questionIndex]["answers"] as List<String>).map((answer) {
+            ...(questions[_questionIndex]["answers"] as List<String>)
+              .map((answer) {
               return Answer(_answerQuestion, answer);
             }).toList()
           ],
