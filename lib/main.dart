@@ -21,6 +21,21 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  // ignore: unused_local_variable
+  static const questions = [
+    {
+      "questionText": "What is your favourite colour?",
+      "answers": ["Black", "Green", "Red", "White"]
+    },
+    {
+      "questionText": "What is your favourite animal?",
+      "answers": ["Rabbit", "Snake", "Elephant", "Lion"]
+    },
+    {
+      "questionText": "What is your favourite food?",
+      "answers": ["Hamburger", "Pizza", "Tacos", "Sushi"]
+    },
+  ]; // Questions
   var _questionIndex = 0;
 
   void _answerQuestion() {
@@ -29,31 +44,24 @@ class _MyAppState extends State<MyApp> {
     });
     // ignore: avoid_print
     print(_questionIndex);
+    if (_questionIndex < questions.length) {
+      // ignore: avoid_print
+      print("We have more questions");
+    } else {
+      // ignore: avoid_print
+      print("No more questions");
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    // ignore: unused_local_variable
-    const questions = [
-      {
-        "questionText": "What is your favourite colour?",
-        "answers": ["Black", "Green", "Red", "White"]
-      },
-      {
-        "questionText": "What is your favourite animal?",
-        "answers": ["Rabbit", "Snake", "Elephant", "Lion"]
-      },
-      {
-        "questionText": "What is your favourite food?",
-        "answers": ["Hamburger", "Pizza", "Tacos", "Sushi"]
-      },
-    ]; // Questions
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: const Text("My First app"),
         ),
-        body: Column(
+        body:_questionIndex < questions.length 
+          ? Column(
           // ignore: prefer_const_literals_to_create_immutables
           children: [
             Question(
@@ -64,7 +72,9 @@ class _MyAppState extends State<MyApp> {
               return Answer(_answerQuestion, answer);
             }).toList()
           ],
-        ),
+        ): Center(
+          child: Text("You did it!"),
+       ),
       ),
     );
   }
