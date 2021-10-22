@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors, must_be_immutable, unused_element, unused_import
 
 import "package:flutter/material.dart";
-import './question.dart';
-import './answer.dart';
+import './quiz.dart';
+import './result.dart';
 
 // void main() {
 // runApp(MyApp());
@@ -22,7 +22,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   // ignore: unused_local_variable
-  static const questions = [
+  static const _questions = [
     {
       "questionText": "What is your favourite colour?",
       "answers": ["Black", "Green", "Red", "White"]
@@ -35,7 +35,7 @@ class _MyAppState extends State<MyApp> {
       "questionText": "What is your favourite food?",
       "answers": ["Hamburger", "Pizza", "Tacos", "Sushi"]
     },
-  ]; // Questions
+  ]; // _Questions
   var _questionIndex = 0;
 
   void _answerQuestion() {
@@ -44,13 +44,20 @@ class _MyAppState extends State<MyApp> {
     });
     // ignore: avoid_print
     print(_questionIndex);
-    if (_questionIndex < questions.length) {
+    if (_questionIndex < _questions.length) {
       // ignore: avoid_print
       print("We have more questions");
     } else {
       // ignore: avoid_print
       print("No more questions");
     }
+  }
+
+  //Set questionIndex = 0
+  void _setquestionIndex() {
+    setState(() {
+      _questionIndex = 1;
+    });
   }
 
   @override
@@ -60,21 +67,16 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text("My First app"),
         ),
-        body:_questionIndex < questions.length 
-          ? Column(
-          // ignore: prefer_const_literals_to_create_immutables
-          children: [
-            Question(
-              questions[_questionIndex]['questionText']?.toString() ?? ' ',
+        body: _questionIndex < _questions.length
+            ? Quiz(
+                answerQuestion: () => _answerQuestion,
+                questionIndex: _questionIndex,
+                questions: _questions,
+              )
+            : Result(
+              resetIndexResult:() => _setquestionIndex,
+
             ),
-            ...(questions[_questionIndex]["answers"] as List<String>)
-                .map((answer) {
-              return Answer(_answerQuestion, answer);
-            }).toList()
-          ],
-        ): Center(
-          child: Text("You did it!"),
-       ),
       ),
     );
   }
